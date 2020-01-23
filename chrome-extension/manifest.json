@@ -1,0 +1,17 @@
+{
+  "name": "Twitch Emotes for Messenger",
+  "version": "2.1",
+  "short_name": "Twitch Emotes for Messenger",
+  "description": "Twitch and BTTV Emotes for Facebook Messenger messages.",
+  "manifest_version": 2,
+  "permissions": ["*://www.messenger.com/*", "storage"],
+    "content_scripts": [
+    {
+        "matches": [ "*://www.messenger.com/*"],
+        "run_at": "document_end",
+        "js": ["index.js"],
+        "all_frames": true
+    }
+  ],
+  "web_accessible_resources": ["index.js", "emotes.json"]
+}
