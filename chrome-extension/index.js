@@ -37,7 +37,8 @@ function replaceEmotes(){
           var emoteURL = window.emotesJson.emotes[j].url;
 
           var str = window.messageList[i].innerHTML;
-          var res = str.replace(new RegExp(emoteName, 'g'), "<img src=\"" + emoteURL + "\">");
+          var res = str.replace(new RegExp(emoteName + " ", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
+          var res = res.replace(new RegExp(" " + emoteName, 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
           window.messageList[i].innerHTML = res;
           var att = document.createAttribute("EmoteChecked");
           window.messageList[i].setAttributeNode(att);
