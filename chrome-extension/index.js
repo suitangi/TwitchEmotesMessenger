@@ -24,7 +24,7 @@ function classChanged() {
 
 //replace all emotes
 function replaceEmotes(){
-  console.log("Emotes Successfully Replaced");
+  // console.log("Emotes Successfully Replaced");
   if(window.messageList.length <= 0){
     setTimeout(function(){replaceEmotes();}, 500);
   }
@@ -37,7 +37,7 @@ function replaceEmotes(){
           var emoteURL = window.emotesJson.emotes[j].url;
 
           var str = window.messageList[i].innerHTML;
-          var res = str.replace(emoteName, "<img src=\"" + emoteURL + "\">");
+          var res = str.replace(new RegExp(emoteName, 'g'), "<img src=\"" + emoteURL + "\">");
           window.messageList[i].innerHTML = res;
           var att = document.createAttribute("EmoteChecked");
           window.messageList[i].setAttributeNode(att);
