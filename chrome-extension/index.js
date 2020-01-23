@@ -30,6 +30,44 @@ function replaceEmotes(){
     setTimeout(function(){replaceEmotes();}, 500);
   }
   else{
+    //for quoted text
+    var quoteList = document.getElementsByClassName("_4k7e _4ik4 _4ik5");
+    for(i = 0; i < quoteList.length; i++){
+      if(!quoteList[i].hasAttribute("EmoteChecked")){
+        for (j = 0; j < window.emotesJson.emotes.length; j++){
+          // console.log(quoteList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
+          var emoteName = window.emotesJson.emotes[j].name;
+          var emoteURL = window.emotesJson.emotes[j].url;
+
+          var str = quoteList[i].innerHTML;
+
+
+          if (str == emoteName){ //Message is one emote
+            var res = "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">";
+            quoteList[i].innerHTML = res;
+            break;
+          }
+          else{ //Message is multiple emotes
+            //spaces
+            var res = str.replace(new RegExp(emoteName + " ", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
+            res = res.replace(new RegExp(" " + emoteName, 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
+            //new lines
+            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">\n");
+            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
+            //punctuation
+            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">!");
+            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">.");
+            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">,");
+            quoteList[i].innerHTML = res;
+          }
+        }
+        //set the emotechecked attribute
+        var att = document.createAttribute("EmoteChecked");
+        quoteList[i].setAttributeNode(att);
+      }
+    }
+
+    //for message text
     for(i = 0; i < window.messageList.length; i++){
       if(!window.messageList[i].hasAttribute("EmoteChecked")){
         for (j = 0; j < window.emotesJson.emotes.length; j++){

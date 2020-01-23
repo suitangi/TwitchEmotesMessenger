@@ -5,6 +5,7 @@ Chrome Extension that adds Twitch and BTTV Emotes for Facebook Messenger message
 
 ## Changelog
 ```
+‣ 1.2.1 Emotes now show up correctly in quotes
 ‣ 1.2.0 Added most Twitch Global emotes
 ‣ 1.1.3 Fixed single emote message not showing up bug
 ‣ 1.1.2 Alt text and Hover title for emotes
