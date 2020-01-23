@@ -1,6 +1,7 @@
 # TwitchEmotesMessenger
 Chrome Extension that adds Twitch and BTTV Emotes for Facebook Messenger messages.
 
+![Screenshot](/../master/Screenshot.png)
 
 ## Changelog
 ```
