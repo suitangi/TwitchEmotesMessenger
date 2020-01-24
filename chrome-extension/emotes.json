@@ -4,6 +4,7 @@
   {"name": "POGGIES", "url":"https://cdn.betterttv.net/emote/5b457bbd0485f43277cecac0/1x"},
   {"name": "pepeD", "url":"https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x"},
   {"name": "PogOh", "url":"https://cdn.betterttv.net/emote/5e25fad7bca2995f13fbd361/1x"},
+  {"name": "Libido", "url":"https://cdn.betterttv.net/emote/5a970ab2122e4331029f0d7e/1x"},
 
   {"name": "MonkaS", "url":"https://cdn.frankerfacez.com/emoticon/425848/1"},
   {"name": "MonkaW", "url":"https://cdn.frankerfacez.com/emoticon/426196/1"},
@@ -16,7 +17,6 @@
   {"name": "OMEGALUL", "url":"https://cdn.frankerfacez.com/emoticon/128054/1"},
   {"name": "LULW", "url":"https://cdn.frankerfacez.com/emoticon/139407/1"},
   {"name": "FeelsBadMan", "url":"https://cdn.frankerfacez.com/emoticon/33355/1"},
-  {"name": "PepeLaugh", "url":"https://cdn.frankerfacez.com/emoticon/64785/1"},
   {"name": "POGGERS", "url":"https://cdn.frankerfacez.com/emoticon/214129/1"},
   {"name": "monkaS", "url":"https://cdn.frankerfacez.com/emoticon/130762/1"},
   {"name": "PepeHands", "url":"https://cdn.frankerfacez.com/emoticon/231552/1"},
@@ -316,6 +316,7 @@
   {"name": "riPepperonis", "url":"https://static-cdn.jtvnw.net/emoticons/v1/62833/1.0"},
   {"name": "twitchRaid", "url":"https://static-cdn.jtvnw.net/emoticons/v1/62836/1.0"},
 
+  {"name": "EZ", "url":"https://cdn.betterttv.net/emote/5590b223b344e2c42a9e28e3/1x"},
   {"name": "KKona", "url":"https://cdn.frankerfacez.com/emoticon/167498/1"},
   {"name": "Clap", "url":"https://cdn.frankerfacez.com/emoticon/298847/1"},
   {"name": "Kappa", "url":"https://static-cdn.jtvnw.net/emoticons/v1/25/1.0"},

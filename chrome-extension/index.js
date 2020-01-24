@@ -124,8 +124,17 @@ function replaceEmotes(){
 //to load at the start of the DOM after it has been dynamically built
 var start = setInterval(function(){
     console.log("Twitch Emotes Loading...");
-    loadCSS('emotes');
+    loadCSS('emoteHover');
     if(document.getElementsByClassName("_6-xl _6-xm").length > 0){
+
+      chrome.storage.local.get({emote_replace: 'on'}, function(data) {
+            if(data.emote_replace == 'off'){
+              window.emoteReplace = false;
+            }
+            else{
+              window.emoteReplace = true;
+            }
+      });
 
       //set the messageList HTMLCollection
       window.messageList = document.getElementsByClassName("_3oh- _58nk");

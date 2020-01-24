@@ -20,5 +20,5 @@
       "all_frames": true
   }
 ],
-  "web_accessible_resources": ["index.js", "emotes.json", "emotes.css"]
+  "web_accessible_resources": ["index.js", "emotes.json", "emoteHover.css"]
 }
