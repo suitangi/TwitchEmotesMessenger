@@ -1,15 +1,24 @@
 body {
-  width: 230px;
+  width: 150px;
   margin: 15px;
 }
+
 h1 {
   font-weight: 500;
   font-size: 16px;
   text-align: center;
 }
+
 h2 {
   font-weight: 400;
   font-size: 16px;
+  text-align: left;
+  cursor: default;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 12px;
   text-align: left;
   cursor: default;
 }
@@ -54,15 +63,15 @@ h2 {
   transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+input:checked+.slider {
+  background-color: #7935e6
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus+.slider {
+  box-shadow: 0 0 1px #7935e6
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);

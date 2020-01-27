@@ -1,17 +1,19 @@
 .emote:hover {
   position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 2px;
 }
 
-.emote:hover:after {
-  content: attr(data);
+.emote:hover .textHover {
+  display: initial !important;
   padding: 4px 8px;
-  color: rgba(255, 255, 255, 0.7);
   position: absolute;
   left: 50%;
   top: 0%;
   white-space: nowrap;
   z-index: 2;
   border-radius: 7px;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -105%);
   background: rgba(0, 0, 0, 0.8);
 }

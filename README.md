@@ -1,10 +1,16 @@
 # TwitchEmotesMessenger
 Chrome Extension that adds Twitch and BTTV Emotes for Facebook Messenger messages.
 
-![Screenshot](/../master/Screenshot.png)
+
+
+![Screenshot](/../master/screenshots/SC4.png)
+![Screenshot](/../master/screenshots/SC1.png)
+![Screenshot](/../master/screenshots/SC2.png)
+![Screenshot](/../master/screenshots/SC3.png)
 
 ## Changelog
 ```
+‣ 1.3.0 Added popup menu, options for hover and on off, optimizations
 ‣ 1.2.2 Optimization, improved hover for emotes
 ‣ 1.2.1 Emotes now show up correctly in quotes
 ‣ 1.2.0 Added most Twitch Global emotes

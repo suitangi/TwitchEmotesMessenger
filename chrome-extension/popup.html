@@ -1,23 +1,29 @@
 <!doctype html>
 <html>
-  <head>
-    <link rel="stylesheet" href="popup.css">
-  </head>
 
-  <body>
-    <h1>Emotes for Messenger Options:</h1>
-    <h2 title="Replaces text in messages as emotes (images).">Emote Replacement:</h2>
+<head>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <h1><img src="icons/icon16.png">  Emote Options:</h1>
+  <span title="Replaces text in messages as emotes (images).">
+    <h2>Emote Replacement:</h2>
     <label class="switch">
       <input type="checkbox" id="replaceSwitch">
       <span class="slider round"></span>
     </label>
-
-    <h2 title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">Hover:</h2>
+  </span>
+  <span title="Hover over emote for the text or hover over the text for emote (if emote replacement is off).">
+    <h2>Hover:</h2>
     <label class="switch">
       <input type="checkbox" id="hoverSwitch">
       <span class="slider round"></span>
     </label>
+  </span>
+  <h3>Please be sure to refresh the Messenger page after changing the options here!</h3>
 
-    <script type="text/javascript" src="popup.js"></script>
-  </body>
+  <script type="text/javascript" src="popup.js"></script>
+</body>
+
 </html>

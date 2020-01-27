@@ -39,6 +39,50 @@ function classChanged() {
   }, 100);
 }
 
+//tags all emotes
+function tagEmotes(){
+  if(window.messageList.length <= 0){
+    setTimeout(function(){tagEmotes();}, 500);
+  }
+  else{
+    //for message text
+    for(i = 0; i < window.messageList.length; i++){
+      if(!window.messageList[i].hasAttribute("EmoteChecked")){
+        for (j = 0; j < window.emotesJson.emotes.length; j++){
+          // console.log(window.messageList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
+          var emoteName = window.emotesJson.emotes[j].name;
+          var emoteURL = window.emotesJson.emotes[j].url;
+
+          var str = window.messageList[i].innerHTML;
+
+
+          if (str == emoteName){ //Message is one emote
+            var res = "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>";
+            window.messageList[i].innerHTML = res;
+            break;
+          }
+          else if (str.includes(emoteName)){ //Message is multiple emotes
+            //spaces
+            var res = str.replace(new RegExp(emoteName + " ", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span> ");
+            res = res.replace(new RegExp(" " + emoteName, 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
+            //new lines
+            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>\n");
+            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
+            //punctuation
+            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>!");
+            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>.");
+            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>,");
+            window.messageList[i].innerHTML = res;
+          }
+        }
+        //set the emotechecked attribute
+        var att = document.createAttribute("EmoteChecked");
+        window.messageList[i].setAttributeNode(att);
+      }
+    }
+  }
+}
+
 //replace all emotes
 function replaceEmotes(){
   // console.log("Emotes Successfully Replaced");
@@ -63,7 +107,7 @@ function replaceEmotes(){
             quoteList[i].innerHTML = res;
             break;
           }
-          else{ //Message is multiple emotes
+          else if (str.includes(emoteName)){ //Message is multiple emotes
             //spaces
             var res = str.replace(new RegExp(emoteName + " ", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"> ");
             res = res.replace(new RegExp(" " + emoteName, 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">");
@@ -121,20 +165,46 @@ function replaceEmotes(){
   }
 }
 
+
+///////////////////////////////////Start the scripts///////////////////////////////////
+//load the storage variables
+//get the emote_replace
+chrome.storage.local.get({emote_replace: 'on'}, function(data) {
+      if(data.emote_replace == 'off'){
+        window.emoteReplace = false;
+      }
+      else{
+        window.emoteReplace = true;
+      }
+      //get emote_hover
+      chrome.storage.local.get({emote_hover: 'on'}, function(data) {
+            if(data.emote_hover == 'off'){
+              window.emoteHover = false;
+            }
+            else{
+              window.emoteHover = true;
+            }
+            console.log(window.emoteReplace);
+            console.log(window.emoteHover);
+            if(window.emoteHover){
+              console.log("ok");
+              if(window.emoteReplace){
+                loadCSS('emoteHover')
+                console.log("ok2");
+              }
+              else{
+                loadCSS('txtHover');
+                console.log("ok1");
+              }
+            }
+      });
+});
+
 //to load at the start of the DOM after it has been dynamically built
 var start = setInterval(function(){
     console.log("Twitch Emotes Loading...");
-    loadCSS('emoteHover');
-    if(document.getElementsByClassName("_6-xl _6-xm").length > 0){
 
-      chrome.storage.local.get({emote_replace: 'on'}, function(data) {
-            if(data.emote_replace == 'off'){
-              window.emoteReplace = false;
-            }
-            else{
-              window.emoteReplace = true;
-            }
-      });
+    if(document.getElementsByClassName("_6-xl _6-xm").length > 0){
 
       //set the messageList HTMLCollection
       window.messageList = document.getElementsByClassName("_3oh- _58nk");
@@ -147,7 +217,14 @@ var start = setInterval(function(){
 
       //MutationObserver for switching conversations
       window.convoSwitchOB = new MutationObserver(function() {
-        setTimeout(function(){replaceEmotes();}, 500);
+        setTimeout(function(){
+          if(window.emoteReplace){
+            replaceEmotes();
+          }
+          else {
+            tagEmotes();
+          }
+        }, 500);
         classChanged();
       });
       var act = document.getElementsByClassName("_1ht2")[0];
@@ -159,7 +236,14 @@ var start = setInterval(function(){
 
       //the mutation observer for new messages
       window.newMesssageOb = new MutationObserver(function() {
-        setTimeout(function(){replaceEmotes();}, 500);
+        setTimeout(function(){
+          if(window.emoteReplace){
+            replaceEmotes();
+          }
+          else {
+            tagEmotes();
+          }
+        }, 500);
       });
 
       //implementing the observe for newMessageob
