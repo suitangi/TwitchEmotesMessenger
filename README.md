@@ -5,14 +5,15 @@ Simply install the extension, go to messenger.com or refresh the if you are alre
 ![Screenshot](/../master/screenshots/SC4.png)
 
 To change options, click on the extension button on the right side of the URL bar.
+
 ![Screenshot](/../master/screenshots/SC1.png)
-Emote replacement: Replaces text in messages as emotes (images).
-Hover: Hover over emote for the text OR hover over the text for emote (if emote replacement is off).
+- Emote replacement: Replaces text in messages as emotes (images).
+- Hover: Hover over emote for the text OR hover over the text for emote (if emote replacement is off).
 
 ![Screenshot](/../master/screenshots/SC2.png)
 ![Screenshot](/../master/screenshots/SC3.png)
 
-This is a third party extension and is not affiliated with Facebook Messenger or Twitch. All emotes and images belong to their respective owners.
+**This is a third party extension and is not affiliated with Facebook Messenger or Twitch. All emotes and images belong to their respective owners.**
 
 ## Changelog
 ```
