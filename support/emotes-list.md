@@ -1,6 +1,6 @@
 # Emotes List
 | Emote Name | Emote |
-| ---------- | -------- |
+| --------- | --------- |
 |ppOverHeat | ![ppOverHeat](https://cdn.betterttv.net/emote/5e0e461e3267f72103fd2175/1x)|
 |POGGIES | ![POGGIES](https://cdn.betterttv.net/emote/5b457bbd0485f43277cecac0/1x)|
 |pepeD | ![pepeD](https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x)|
