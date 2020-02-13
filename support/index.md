@@ -15,8 +15,8 @@ This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger
 To change options, click on the extension button on the right side of the URL bar.
 ![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC1.png)
 
-### Emote replacement: Replaces text in messages as emotes (images).
-### Hover: Hover over emote for the text OR hover over the text for emote (if emote replacement is off).
+- Emote replacement: Replaces text in messages as emotes (images).
+- Hover: Hover over emote for the text OR hover over the text for emote (if emote replacement is off).
 *Both emote replacement and hover are on by default*
 
 ### Emote Replacement On & Hover On
