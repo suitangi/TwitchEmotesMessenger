@@ -24,7 +24,7 @@ function saveJson(emotesJson) {
   //      readme += "|" + window.emotesJson.emotes[j].name + ' | ![' + window.emotesJson.emotes[j].name + "](" + window.emotesJson.emotes[j].url + ")|\n" ;
   //   }
   //   console.log(readme);
-  // }
+  }
 
   //Classchanged function for the MutationObserver for active conversation
   function classChanged() {
