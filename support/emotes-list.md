@@ -3,6 +3,7 @@ title: Twitch Emotes for Messenger
 description: See your favorite Twitch emotes when you chat with your friends on messenger.com
 
 ---
+[↼Back](https://suitangi.github.io/TwitchEmotesMessenger/support/)
 
 # Emotes List
 
