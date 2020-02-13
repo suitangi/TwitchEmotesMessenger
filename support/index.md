@@ -4,7 +4,7 @@ description: See your favorite Twitch emotes when you chat with your friends on 
 
 ---
 
-# TwitchEmotesMessenger
+# Twitch Emotes For Messenger
 This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger on [messenger.com](messenger.com).
 
 **Get the extension here:**
