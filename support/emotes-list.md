@@ -1,3 +1,9 @@
+---
+title: Twitch Emotes for Messenger
+description: See your favorite Twitch emotes when you chat with your friends on messenger.com
+
+---
+
 # Emotes List
 
 | Emote Name | Emote |

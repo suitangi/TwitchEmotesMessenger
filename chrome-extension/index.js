@@ -17,6 +17,13 @@ function unloadCSS(file) {
 //load the emotes json into a global variable
 function saveJson(emotesJson) {
   window.emotesJson = emotesJson;
+
+  //for documentation purposes only
+  let readme = "";
+  for (j = 0; j < window.emotesJson.emotes.length; j++) {
+     readme += "|" + window.emotesJson.emotes[j].name + ' | ![' + window.emotesJson.emotes[j].name + "](" + window.emotesJson.emotes[j].url + ")|\n" ;
+  }
+  console.log(readme);
 }
 
 //Classchanged function for the MutationObserver for active conversation
@@ -50,7 +57,6 @@ function tagEmotes() {
     for (i = 0; i < window.messageList.length; i++) {
       if (!window.messageList[i].hasAttribute("EmoteChecked")) {
         for (j = 0; j < window.emotesJson.emotes.length; j++) {
-          // console.log(window.messageList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
           let emoteName = window.emotesJson.emotes[j].name;
           let emoteURL = window.emotesJson.emotes[j].url;
 

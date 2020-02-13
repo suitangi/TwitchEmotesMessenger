@@ -1,3 +1,9 @@
+---
+title: Twitch Emotes for Messenger
+description: See your favorite Twitch emotes when you chat with your friends on messenger.com
+
+---
+
 # TwitchEmotesMessenger
 This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger on [messenger.com](messenger.com).
 
@@ -26,7 +32,7 @@ To change options, click on the extension button on the right side of the URL ba
 ![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC3.png)
 
 ## Emote List
-Not every emote is support (especially since many are channel-specific/have many duplicate forms). 
+Not every emote is support (especially since many are channel-specific/have many duplicate forms).
 The list of supported emotes can be found [here](https://suitangi.github.io/TwitchEmotesMessenger/support/emotes-list).
 
 ## Other Information
