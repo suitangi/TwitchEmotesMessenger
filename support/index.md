@@ -4,7 +4,7 @@ description: See your favorite Twitch emotes when you chat with your friends on 
 
 ---
 
-# Twitch Emotes For Messenger
+# Twitch Emotes For Messenger ![](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/icons/icon16.png)
 This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger on [messenger.com](messenger.com).
 
 **Get the extension here:**
@@ -12,7 +12,7 @@ This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger
 
 ## How to Use:
 1. Install the extension
-2. Go to [messenger.com](messenger.com) or refresh the if you are already there.
+2. Go to [messenger.com](messenger.com) or refresh the page if you are already there.
 3. The emote texts in messages you send and receive should show up as emotes like on Twitch!
 
 ![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC4.png)
