@@ -27,7 +27,7 @@ To change options, click on the extension button on the right side of the URL ba
 
 ## Emote List
 Not every emote is support (especially since many are channel-specific/have many duplicate forms). 
-The list of support emotes can be found [here](https://suitangi.github.io/TwitchEmotesMessenger/support/emotes-list).
+The list of supported emotes can be found [here](https://suitangi.github.io/TwitchEmotesMessenger/support/emotes-list).
 
 ## Other Information
 **This is a third party extension and is not affiliated with Facebook Messenger or Twitch. All emotes and images belong to their respective owners.**
