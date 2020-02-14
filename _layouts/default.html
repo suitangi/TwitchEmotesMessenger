@@ -42,17 +42,16 @@
   )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
   //
   let th = document.getElementsByTagName("th")[0];
-  th.addEventListener('click', (() => {
+  th.addEventListener('click', function() {
     const table = th.closest('table').getElementsByTagName("tbody")[0];
     Array.from(table.querySelectorAll('tr:nth-child(n+1)'))
       .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
       .forEach(tr => table.appendChild(tr));
-    if(this.asc)
-      this.innerText = this.innerText.replace("▼", "▲");
-    else{
+      this.innerText = this.innerText.replace("▼", "↑");
       this.innerText = this.innerText.replace("▲", "▼");
+      this.innerText = this.innerText.replace("↑", "▼");
     }
-  }));
+  });
   th.click();
 
 </script>
