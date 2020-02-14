@@ -5,7 +5,7 @@ description: See your favorite Twitch emotes when you chat with your friends on 
 ---
 [↼Back](https://suitangi.github.io/TwitchEmotesMessenger/support/)
 
-# Emotes List
+# Emotes List ![](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/icons/icon48.png)
 *Click on **"Emote Name"** to sort alphabetically.*
 
 | Emote Name ▼| Emote |
