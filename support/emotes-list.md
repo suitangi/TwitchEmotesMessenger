@@ -9,7 +9,7 @@ description: See your favorite Twitch emotes when you chat with your friends on 
 
 | Emote Name | Emote |
 | --- | --- |
-| ↿ Click to Sort ↾ | |
+| --- | --- |
 |PogChomp | ![PogChomp](https://cdn.frankerfacez.com/emoticon/259795/1)|
 |ppOverHeat | ![ppOverHeat](https://cdn.betterttv.net/emote/5e0e461e3267f72103fd2175/1x)|
 |POGGIES | ![POGGIES](https://cdn.betterttv.net/emote/5b457bbd0485f43277cecac0/1x)|
