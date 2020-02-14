@@ -8,7 +8,7 @@ description: See your favorite Twitch emotes when you chat with your friends on 
 # Emotes List
 *Click on **"Emote Name"** to sort alphabetically.*
 
-| Emote Name | Emote |
+| Emote Name ▼| Emote |
 | --- | --- |
 |PogChomp | ![PogChomp](https://cdn.frankerfacez.com/emoticon/259795/1)|
 |ppOverHeat | ![ppOverHeat](https://cdn.betterttv.net/emote/5e0e461e3267f72103fd2175/1x)|
