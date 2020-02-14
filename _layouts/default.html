@@ -47,10 +47,9 @@
     Array.from(table.querySelectorAll('tr:nth-child(n+1)'))
       .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
       .forEach(tr => table.appendChild(tr));
-      console.log(this);
       this.innerText = this.innerText.replace("▼", "↑");
       this.innerText = this.innerText.replace("▲", "▼");
-      this.innerText = this.innerText.replace("↑", "▼");
+      this.innerText = this.innerText.replace("↑", "▲");
   });
   th.click();
 
