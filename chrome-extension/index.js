@@ -17,7 +17,7 @@ function unloadCSS(file) {
 //load the emotes json into a global variable
 function saveJson(emotesJson) {
   window.emotesJson = emotesJson;
-
+  window.emotesJson.emotes.sort((a, b) => (a.name < b.name) ? 1 : -1);
   //for documentation purposes only
   //   let readme = "";
   //   for (j = 0; j < window.emotesJson.emotes.length; j++) {
