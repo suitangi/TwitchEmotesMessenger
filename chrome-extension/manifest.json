@@ -4,7 +4,7 @@
   "short_name": "Twitch Emotes for Messenger",
   "description": "Twitch and BTTV Emotes for Facebook Messenger messages.",
   "manifest_version": 2,
-  "permissions": ["*://www.messenger.com/*", "storage"],
+  "permissions": ["*://www.messenger.com/*", "storage", "https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/emotes.json"],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
