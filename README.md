@@ -1,3 +1,4 @@
+
 # TwitchEmotesMessenger
 This project is a browser extension that replaces Twitch and some BTTV emote texts to actual image emotes for Facebook's Messenger on [messenger.com](messenger.com).
 
@@ -54,6 +55,7 @@ Where the `emotes` list can have any number of emotes listed. See the default [ 
 
 ## Changelog
 ```
+‣ 1.3.1 Added more recently relevant emotes. Uses remote data to fetch emotes so it can be updated more often.
 ‣ 1.3.0 Added popup menu, options for hover and on off, optimizations
 ‣ 1.2.2 Optimization, improved hover for emotes
 ‣ 1.2.1 Emotes now show up correctly in quotes
