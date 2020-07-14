@@ -6,14 +6,22 @@ This project is a browser extension that replaces Twitch and some BTTV emote tex
 
 
 ## Usage
-There are two ways to use this project, one is to download the published extension here:
-- [Chrome](https://chrome.google.com/webstore/detail/twitch-emotes-for-messeng/hmpnchjkbdnnjpcojmdghmjcmiiemdla) (see [support page](https://suitangi.github.io/TwitchEmotesMessenger/support/))
+There are two ways to use this project:
 
-The other way is to clone this repository:
+#### Chrome Webstore
+Download the published extension here:
+- [Chrome](https://chrome.google.com/webstore/detail/twitch-emotes-for-messeng/hmpnchjkbdnnjpcojmdghmjcmiiemdla) ([support page](https://suitangi.github.io/TwitchEmotesMessenger/support/))
+
+#### Manual Download
+Clone this repository:
 ```
 git clone https://github.com/suitangi/TwitchEmotesMessenger.git
 ```
-Just make sure to turn on developer options in chrome://extensions/ and 'Load Unpacked' and then select the folder where the `manifest.json` file is located.
+or download the latest version in [Releases](https://github.com/suitangi/TwitchEmotesMessenger/releases)
+
+
+Just make sure to turn on developer options in chrome://extensions/ and 'Load Unpacked' and then select the folder where `manifest.json` is located.
+
 This option allows you to [use your own emotes lists](#using-your-own).
 
 ## Options

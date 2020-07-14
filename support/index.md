@@ -47,6 +47,7 @@ Please report bugs to suitangi778@gmail.com.
 
 ## Changelog
 ```
+‣ 1.3.1 Added more recently relevant emotes. Uses remote data to fetch emotes so it can be updated more often.
 ‣ 1.3.0 Added popup menu, options for hover and on off, optimizations
 ‣ 1.2.2 Optimization, improved hover for emotes
 ‣ 1.2.1 Emotes now show up correctly in quotes
