@@ -218,9 +218,11 @@ let start = setInterval(function() {
       if (xhr.readyState == 4  && this.status == 200) {
         //when readyState is 4 and status is 200, the response is ready
         var resp = JSON.parse(xhr.responseText);
+        console.log("Successfully connected to cloud emote list");
         saveJson(resp);
       } else if (xhr.readyState == 404) {
         //can't connect to server for updated json, use local json
+        console.log("Couldn't connect to cloud emote list, using local list (might have less emotes).");
         const jsonUrl = chrome.runtime.getURL('emotes.json');
         fetch(jsonUrl)
           .then((response) => response.json()) //assuming file contains json
