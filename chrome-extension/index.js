@@ -28,7 +28,7 @@ function saveJson(emotesJson) {
 
 //Classchanged function for the MutationObserver for active conversation
 function classChanged() {
-  let act = document.getElementsByClassName("_1ht2")[0];
+  let act = document.getElementsByClassName("i224opu6")[0];
   window.convoSwitchOB.observe(act, {
     attributes: true,
     attributeFilter: ["class"]
@@ -36,8 +36,8 @@ function classChanged() {
 
   //implementing the observe for newMessageob
   let newMOBSetter = setInterval(function() {
-    if (document.getElementsByClassName("_2k8v")[0] != null) {
-      window.newMesssageOb.observe(document.getElementsByClassName("_2k8v")[0].nextSibling, {
+    if (document.querySelectorAll('[aria-label="Messages"]')[0] != null) {
+      window.newMesssageOb.observe(document.querySelectorAll('[aria-label="Messages"]')[0], {
         childList: true,
         subtree: true
       });
@@ -205,10 +205,11 @@ chrome.storage.local.get({
 let start = setInterval(function() {
   console.log("Twitch Emotes Loading...");
 
-  if (document.getElementsByClassName("_6-xl _6-xm").length > 0) {
+  //wait for react to build messenger page only load after a message element has been detected
+  if (document.querySelectorAll('[data-testid="messenger_incoming_text_row"]').length + document.querySelectorAll('[data-testid="outgoing_message"]').length > 0) {
 
     //set the messageList HTMLCollection
-    window.messageList = document.getElementsByClassName("_3oh- _58nk");
+    window.messageList = document.getElementsByClassName("ljqsnud1");
 
     //get the emotes json
     //first try the server
@@ -243,7 +244,7 @@ let start = setInterval(function() {
       }, 500);
       classChanged();
     });
-    let act = document.getElementsByClassName("_1ht2")[0];
+    let act = document.getElementsByClassName("i224opu6")[0];
     window.convoSwitchOB.observe(act, {
       attributes: true,
       attributeFilter: ["class"]
@@ -263,8 +264,8 @@ let start = setInterval(function() {
 
     //implementing the observe for newMessageob
     let newMOBSetter = setInterval(function() {
-      if (document.getElementsByClassName("_2k8v")[0] != null) {
-        window.newMesssageOb.observe(document.getElementsByClassName("_2k8v")[0].nextSibling, {
+      if (document.querySelectorAll('[aria-label="Messages"]')[0] != null) {
+        window.newMesssageOb.observe(document.querySelectorAll('[aria-label="Messages"]')[0], {
           childList: true,
           subtree: true
         });
