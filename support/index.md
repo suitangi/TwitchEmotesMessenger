@@ -1,11 +1,11 @@
 ---
-title: Twitch Emotes for Messenger
+title: Emotes for Messenger
 description: See your favorite Twitch emotes when you chat with your friends on messenger.com
 
 ---
 
-# Twitch Emotes For Messenger ![](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/icons/icon48.png)
-This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger on [messenger.com](messenger.com).
+# Emotes For Messenger ![](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/icons/icon48.png)
+This Extension allows Twitch, BTTV and custom Emotes to show up for Facebook's Messenger on [messenger.com](messenger.com).
 
 **Get the extension here:**
 - [Chrome](https://chrome.google.com/webstore/detail/twitch-emotes-for-messeng/hmpnchjkbdnnjpcojmdghmjcmiiemdla)
@@ -21,18 +21,8 @@ This Extension allows Twitch and BTTV Emotes to show up for Facebook's Messenger
 To change options, click on the extension button on the right side of the URL bar.
 ![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC1.png)
 
-- Emote replacement: Replaces text in messages as emotes (images).
-- Hover: Hover over emote for the text OR hover over the text for emote (if emote replacement is off).
-*Both emote replacement and hover are on by default*
-
-### Emote Replacement On & Hover On
-![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC2.png)
-
-### Emote Replacement Off & Hover On
-![Screenshot](https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/screenshots/SC3.png)
-
 ## Emote List
-Not every emote is support (especially since many are channel-specific/have many duplicate forms).
+Not every emote is supported (especially since many are channel-specific/have many duplicate forms).
 The list of supported emotes can be found [here](https://suitangi.github.io/TwitchEmotesMessenger/support/emotes-list).
 
 ## Other Information
@@ -42,11 +32,12 @@ The project is open-sourced, you can check it out [here](https://suitangi.github
 Please report bugs to suitangi778@gmail.com.
 
 ### Browser permissions
-- messenger.com: To change the appearnce (show emotes) of messenger.com
+- messenger.com: To change the appearance (show emotes) of messenger.com
 - storage: To store your preferences
 
 ## Changelog
 ```
+‣ 2.0.0 Added support for custom emotes, bug fixes and options feature expansion.
 ‣ 1.3.2 Updated for Messenger update.
 ‣ 1.3.1 Added more recently relevant emotes. Uses remote data to fetch emotes so it can be updated more often.
 ‣ 1.3.0 Added popup menu, options for hover and on off, optimizations

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="options.css">
+  <title>Emotes for Messenger Options</title>
+</head>
+
+<body>
+  <h1><img src="../icons/icon48.png"> Emotes For Messenger Options:</h1>
+  <h2 style="color: transparent !important; user-select: none;">-------------------</h2>
+  <span class="menuItem" title="Replace text with emotes (images)">
+    <h2>Emote Replacement:</h2>
+    <label class="switch">
+      <input type="checkbox" id="onoffSwitch">
+      <span class="slider round"></span>
+    </label>
+  </span>
+  <span class="menuItem" title="Enable/Disable default emotes">
+    <h2><br>
+      Enable/Disable Default Emotes:</h2>
+
+    <div id="defaultEDiv"></div>
+  </span>
+  <span class="menuItem" title="Enable/Disable default emotes">
+    <h2><br>
+      Custom Emotes:</h2>
+      <div>
+        <span style="font-size: 16px;">Add custom emote: </span><input class="emote-input" id="customName" type="text" placeholder="Emote Name">
+        <input class="emote-input" id="customLink" type="text" placeholder="Image Link">
+        <img id="customImg" src="error">
+        <button id="addCustom" disabled>Add</button>
+        <br>
+      </div>
+      <span id="customError" style="display: none;">Invalid image URL</span>
+    <div id="customEDiv"></div>
+  </span>
+  <br><br>
+  <h2>For more assistence, please see the <a href="https://suitangi.github.io/TwitchEmotesMessenger/support/" target="_blank">support page</a></h2>
+  <script type="text/javascript" src="options.js"></script>
+</body>
+
+</html>

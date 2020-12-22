@@ -17,76 +17,50 @@ function unloadCSS(file) {
 //load the emotes json into a global variable
 function saveJson(emotesJson) {
   window.emotesJson = emotesJson;
+
+  console.log(window.banlist);
+
+  //remove those from the banlist
+  for (var i = 0; i < window.emotesJson.emotes.length; i++) {
+    if (window.banlist.has(window.emotesJson.emotes[i].name)) {
+      window.emotesJson.emotes.splice(i, 1);
+      i -= 1;
+    }
+  }
+
+  //add from custom list
+  for (var i = 0; i < window.customlist.length; i++) {
+    if (window.customlist[i].enabled) {
+      window.emotesJson.emotes.push(window.customlist[i]);
+    }
+  }
+
   window.emotesJson.emotes.sort((a, b) => (a.name < b.name) ? 1 : -1);
-  //for documentation purposes only
-  //   let readme = "";
-  //   for (j = 0; j < window.emotesJson.emotes.length; j++) {
-  //      readme += "|" + window.emotesJson.emotes[j].name + ' | ![' + window.emotesJson.emotes[j].name + "](" + window.emotesJson.emotes[j].url + ")|\n" ;
-  //   }
-  //   console.log(readme);
+  if (window.emoteReplace)
+    replaceEmotes();
 }
 
 //Classchanged function for the MutationObserver for active conversation
 function classChanged() {
   let act = document.getElementsByClassName("i224opu6")[0];
+  window.convoSwitchOB.disconnect();
   window.convoSwitchOB.observe(act, {
     attributes: true,
     attributeFilter: ["class"]
   });
 
-  //implementing the observe for newMessageob
+  // implementing the observe for newMessageob
   let newMOBSetter = setInterval(function() {
-    if (document.querySelectorAll('[aria-label="Messages"]')[0] != null) {
-      window.newMesssageOb.observe(document.querySelectorAll('[aria-label="Messages"]')[0], {
+    if (document.querySelectorAll('[aria-label="Messages"]')[0] != null &&
+      window.currentMessageBoard != document.querySelectorAll('[aria-label="Messages"]')[0]) {
+      window.currentMessageBoard = document.querySelectorAll('[aria-label="Messages"]')[0]
+      window.newMessageOb.observe(window.currentMessageBoard, {
         childList: true,
         subtree: true
       });
       clearInterval(newMOBSetter);
     }
   }, 100);
-}
-
-//tags all emotes
-function tagEmotes() {
-  if (window.messageList.length <= 0) {
-    setTimeout(function() {
-      tagEmotes();
-    }, 500);
-  } else {
-    //for message text
-    for (i = 0; i < window.messageList.length; i++) {
-      if (!window.messageList[i].hasAttribute("EmoteChecked")) {
-        for (j = 0; j < window.emotesJson.emotes.length; j++) {
-          let emoteName = window.emotesJson.emotes[j].name;
-          let emoteURL = window.emotesJson.emotes[j].url;
-
-          let str = window.messageList[i].innerHTML;
-
-
-          if (str == emoteName) { //Message is one emote
-            let res = "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>";
-            window.messageList[i].innerHTML = res;
-            break;
-          } else if (str.includes(emoteName)) { //Message is multiple emotes
-            //spaces
-            let res = str.replace(new RegExp(emoteName + " ", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\">" + emoteName + "<img class=\"textHover\" style=\"display:none\" src=\"" + emoteURL + "\"></span>,");
-            window.messageList[i].innerHTML = res;
-          }
-        }
-        //set the emotechecked attribute
-        let att = document.createAttribute("EmoteChecked");
-        window.messageList[i].setAttributeNode(att);
-      }
-    }
-  }
 }
 
 //replace all emotes
@@ -98,7 +72,7 @@ function replaceEmotes() {
     }, 500);
   } else {
     //for quoted text
-    let quoteList = document.getElementsByClassName("_4k7e _4ik4 _4ik5");
+    let quoteList = document.getElementsByClassName("osnr6wyh");
     for (i = 0; i < quoteList.length; i++) {
       if (!quoteList[i].hasAttribute("EmoteChecked")) {
         for (j = 0; j < window.emotesJson.emotes.length; j++) {
@@ -106,25 +80,31 @@ function replaceEmotes() {
           let emoteName = window.emotesJson.emotes[j].name;
           let emoteURL = window.emotesJson.emotes[j].url;
 
-          let str = quoteList[i].innerHTML;
-
+          let ele = quoteList[i];
+          while (ele.firstElementChild != null) {
+            ele = ele.firstElementChild;
+          }
+          let str = ele.innerHTML;
 
           if (str == emoteName) { //Message is one emote
-            let res = "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>";
-            quoteList[i].innerHTML = res;
+            let res = "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
+            ele.innerHTML = res;
             break;
-          } else if (str.includes(emoteName)) { //Message is multiple emotes
-            //spaces
-            let res = str.replace(new RegExp(emoteName + " ", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">");
+          } else if (str.includes(emoteName)) { //Message is multiple words
+            let res;
+            //in a word by itself
+            res = str.replace(new RegExp(" " + emoteName + " ", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
+            //beginning or end of string
+            res = str.replace(new RegExp("^" + emoteName + " ", 'g'), "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
+            res = res.replace(new RegExp(" " + emoteName + "$", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
             //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">");
+            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">\n");
+            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
             //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\">,");
-            quoteList[i].innerHTML = res;
+            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">!");
+            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">.");
+            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">,");
+            ele.innerHTML = res;
           }
         }
         //set the emotechecked attribute
@@ -141,25 +121,31 @@ function replaceEmotes() {
           let emoteName = window.emotesJson.emotes[j].name;
           let emoteURL = window.emotesJson.emotes[j].url;
 
-          let str = window.messageList[i].innerHTML;
-
+          let ele = window.messageList[i];
+          while (ele.firstElementChild != null) {
+            ele = ele.firstElementChild;
+          }
+          let str = ele.innerHTML;
 
           if (str == emoteName) { //Message is one emote
-            let res = "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>";
-            window.messageList[i].innerHTML = res;
+            let res = "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
+            ele.innerHTML = res;
             break;
-          } else if (str.includes(emoteName)) { //Message is multiple emotes
-            //spaces
-            let res = str.replace(new RegExp(emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span> ");
-            res = res.replace(new RegExp(" " + emoteName, 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
+          } else if (str.includes(emoteName)) { //Message is multiple words
+            let res;
+            //in a word by itself
+            res = str.replace(new RegExp(" " + emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"> <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
+            //beginning or end of string
+            res = str.replace(new RegExp("^" + emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
+            res = res.replace(new RegExp(" " + emoteName + "$", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"> <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>");
             //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
+            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>\n");
+            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
             //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>,");
-            window.messageList[i].innerHTML = res;
+            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>!");
+            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>.");
+            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>,");
+            ele.innerHTML = res;
           }
         }
         //set the emotechecked attribute
@@ -175,30 +161,17 @@ function replaceEmotes() {
 //load the storage variables
 //get the emote_replace
 chrome.storage.local.get({
-  emote_replace: 'on'
+  emote_replace: 'on',
+  banlist: [],
+  customlist: []
 }, function(data) {
   if (data.emote_replace == 'off') {
     window.emoteReplace = false;
   } else {
     window.emoteReplace = true;
   }
-  //get emote_hover
-  chrome.storage.local.get({
-    emote_hover: 'on'
-  }, function(data) {
-    if (data.emote_hover == 'off') {
-      window.emoteHover = false;
-    } else {
-      window.emoteHover = true;
-    }
-    if (window.emoteHover) {
-      if (window.emoteReplace) {
-        loadCSS('emoteHover')
-      } else {
-        loadCSS('txtHover');
-      }
-    }
-  });
+  window.banlist = new Set(data.banlist);
+  window.customlist = data.customlist;
 });
 
 //to load at the start of the DOM after it has been dynamically built
@@ -216,12 +189,12 @@ let start = setInterval(function() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/emotes.json", true);
     xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4  && this.status == 200) {
+      if (xhr.readyState == 4 && this.status == 200) {
         //when readyState is 4 and status is 200, the response is ready
         var resp = JSON.parse(xhr.responseText);
         console.log("Successfully connected to cloud emote list");
         saveJson(resp);
-      } else if (xhr.readyState == 404) {
+      } else if (xhr.status == 404) {
         //can't connect to server for updated json, use local json
         console.log("Couldn't connect to cloud emote list, using local list (might have less emotes).");
         const jsonUrl = chrome.runtime.getURL('emotes.json');
@@ -232,17 +205,16 @@ let start = setInterval(function() {
     }
     xhr.send();
 
+    //load css styles for the emotes
+    loadCSS('emote');
 
     //MutationObserver for switching conversations
     window.convoSwitchOB = new MutationObserver(function() {
       setTimeout(function() {
-        if (window.emoteReplace) {
+        if (window.emoteReplace)
           replaceEmotes();
-        } else {
-          tagEmotes();
-        }
+        classChanged();
       }, 500);
-      classChanged();
     });
     let act = document.getElementsByClassName("i224opu6")[0];
     window.convoSwitchOB.observe(act, {
@@ -252,20 +224,18 @@ let start = setInterval(function() {
 
 
     //the mutation observer for new messages
-    window.newMesssageOb = new MutationObserver(function() {
+    window.newMessageOb = new MutationObserver(function() {
       setTimeout(function() {
-        if (window.emoteReplace) {
+        if (window.emoteReplace)
           replaceEmotes();
-        } else {
-          tagEmotes();
-        }
       }, 500);
     });
 
     //implementing the observe for newMessageob
     let newMOBSetter = setInterval(function() {
+      window.currentMessageBoard = document.querySelectorAll('[aria-label="Messages"]')[0];
       if (document.querySelectorAll('[aria-label="Messages"]')[0] != null) {
-        window.newMesssageOb.observe(document.querySelectorAll('[aria-label="Messages"]')[0], {
+        window.newMessageOb.observe(window.currentMessageBoard, {
           childList: true,
           subtree: true
         });

@@ -1,8 +1,8 @@
 {
   "name": "Twitch Emotes for Messenger",
-  "version": "1.3.2",
-  "short_name": "Twitch Emotes for Messenger",
-  "description": "Twitch and BTTV Emotes for Facebook Messenger messages.",
+  "version": "2.0.0",
+  "short_name": "Emotes for Messenger",
+  "description": "Twitch, BTTV and Custom Emotes for Facebook Messenger messages.",
   "manifest_version": 2,
   "permissions": ["*://www.messenger.com/*", "storage", "https://raw.githubusercontent.com/suitangi/TwitchEmotesMessenger/master/chrome-extension/emotes.json"],
   "icons": {
@@ -10,6 +10,7 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "options_page": "options/options.html",
   "browser_action": {
     "default_icon": "icons/default-icon.png",
     "default_popup": "popup/popup.html"
@@ -20,5 +21,5 @@
     "js": ["index.js"],
     "all_frames": true
   }],
-  "web_accessible_resources": ["index.js", "emotes.json", "emoteHover.css", "txtHover.css"]
+  "web_accessible_resources": ["index.js", "emotes.json", "emote.css"]
 }

@@ -1,5 +1,5 @@
 ---
-title: Twitch Emotes for Messenger
+title: Emotes for Messenger
 description: See your favorite Twitch emotes when you chat with your friends on messenger.com
 
 ---
