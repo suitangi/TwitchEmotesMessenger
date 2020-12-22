@@ -63,6 +63,27 @@ function classChanged() {
   }, 100);
 }
 
+function emote2Html(emoteName, emoteURL, str) {
+  let res = str, pas = "";
+
+  //in a word by itself
+  while (res != pas){
+    pas = res;
+    res = res.replace(new RegExp(" " + emoteName + " ", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
+  }
+  //beginning or end of string
+  res = res.replace(new RegExp("^" + emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
+  res = res.replace(new RegExp(" " + emoteName + "$", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>");
+  //new lines
+  res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>\n");
+  res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
+  //punctuation
+  res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>!");
+  res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>.");
+  res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>,");
+  return res;
+}
+
 //replace all emotes
 function replaceEmotes() {
   // console.log("Emotes Successfully Replaced");
@@ -75,38 +96,25 @@ function replaceEmotes() {
     let quoteList = document.getElementsByClassName("osnr6wyh");
     for (i = 0; i < quoteList.length; i++) {
       if (!quoteList[i].hasAttribute("EmoteChecked")) {
+
+        let ele = quoteList[i];
+        let str = ele.innerText;
+        let res = str;
+
         for (j = 0; j < window.emotesJson.emotes.length; j++) {
           // console.log(quoteList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
           let emoteName = window.emotesJson.emotes[j].name;
           let emoteURL = window.emotesJson.emotes[j].url;
 
-          let ele = quoteList[i];
-          while (ele.firstElementChild != null) {
-            ele = ele.firstElementChild;
-          }
-          let str = ele.innerHTML;
-
           if (str == emoteName) { //Message is one emote
-            let res = "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
-            ele.innerHTML = res;
+            res = "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
             break;
           } else if (str.includes(emoteName)) { //Message is multiple words
-            let res;
-            //in a word by itself
-            res = str.replace(new RegExp(" " + emoteName + " ", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
-            //beginning or end of string
-            res = str.replace(new RegExp("^" + emoteName + " ", 'g'), "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"> ");
-            res = res.replace(new RegExp(" " + emoteName + "$", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\">,");
-            ele.innerHTML = res;
+            res = emote2Html(emoteName, emoteURL, res);
           }
         }
+        //set the innerHTML
+        ele.innerHTML = ele.innerHTML.replace(ele.innerText, res);
         //set the emotechecked attribute
         let att = document.createAttribute("EmoteChecked");
         quoteList[i].setAttributeNode(att);
@@ -116,38 +124,25 @@ function replaceEmotes() {
     //for message text
     for (i = 0; i < window.messageList.length; i++) {
       if (!window.messageList[i].hasAttribute("EmoteChecked")) {
+
+        let ele = window.messageList[i];
+        let str = ele.innerText;
+        let res = str;
+
         for (j = 0; j < window.emotesJson.emotes.length; j++) {
           // console.log(window.messageList[i].innerHTML + ", " + window.emotesJson.emotes[j].name + ', ' + window.emotesJson.emotes[j].url);
           let emoteName = window.emotesJson.emotes[j].name;
           let emoteURL = window.emotesJson.emotes[j].url;
 
-          let ele = window.messageList[i];
-          while (ele.firstElementChild != null) {
-            ele = ele.firstElementChild;
-          }
-          let str = ele.innerHTML;
-
           if (str == emoteName) { //Message is one emote
-            let res = "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
-            ele.innerHTML = res;
+            res = "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>";
             break;
           } else if (str.includes(emoteName)) { //Message is multiple words
-            let res;
-            //in a word by itself
-            res = str.replace(new RegExp(" " + emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"> <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
-            //beginning or end of string
-            res = str.replace(new RegExp("^" + emoteName + " ", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span> ");
-            res = res.replace(new RegExp(" " + emoteName + "$", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"> <img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>");
-            //new lines
-            res = res.replace(new RegExp(emoteName + "\n", 'g'), "<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>\n");
-            res = res.replace(new RegExp("\n" + emoteName, 'g'), "\n<span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\"></span>");
-            //punctuation
-            res = res.replace(new RegExp(" " + emoteName + "!", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>!");
-            res = res.replace(new RegExp(" " + emoteName + "\\.", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>.");
-            res = res.replace(new RegExp(" " + emoteName + ",", 'g'), " <span class=\"emote\" data=\"" + emoteName + "\"><img class=\"emoteImg\" src=\"" + emoteURL + "\" alt=\"" + emoteName + "\" title=\"" + emoteName + "\"></span>,");
-            ele.innerHTML = res;
+            res = emote2Html(emoteName, emoteURL, res);
           }
         }
+        //set the innerHTML
+        ele.innerHTML = ele.innerHTML.replace(ele.innerText, res);
         //set the emotechecked attribute
         let att = document.createAttribute("EmoteChecked");
         window.messageList[i].setAttributeNode(att);
