@@ -199,7 +199,13 @@ chrome.storage.local.get({
 
   console.log(window.banlist);
   console.log(window.customlist);
+  for (var i = 0; i < window.customlist.length; i++) {
+    if (window.customlist[i].enabled) {
+      window.activeEmotes.add(window.customlist[i].name);
+    }
+  }
 
+  console.log(window.activeEmotes);
   showCustomList();
 
   //get the emotes json
