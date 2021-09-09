@@ -174,7 +174,7 @@ let start = setInterval(function() {
   console.log("Twitch Emotes Loading...");
 
   //wait for react to build messenger page only load after a message element has been detected
-  if (document.querySelectorAll('[data-testid="messenger_incoming_text_row"]').length + document.querySelectorAll('[data-testid="outgoing_message"]').length > 0) {
+  if (document.querySelectorAll('[data-testid="message-container"]').length > 0) {
 
     //set the messageList HTMLCollection
     window.messageList = document.getElementsByClassName("ljqsnud1");

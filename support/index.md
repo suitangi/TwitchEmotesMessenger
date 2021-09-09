@@ -37,6 +37,7 @@ Please report bugs to suitangi778@gmail.com.
 
 ## Changelog
 ```
+‣ 2.0.1 Added fix for new messenger.
 ‣ 2.0.0 Added support for custom emotes, bug fixes and options feature expansion.
 ‣ 1.3.2 Updated for Messenger update.
 ‣ 1.3.1 Added more recently relevant emotes. Uses remote data to fetch emotes so it can be updated more often.
